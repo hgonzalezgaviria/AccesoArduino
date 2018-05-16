@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------
    Pines seleccionados para el ESP8266 NodeMCU Amica V2
-   Signal     Pin              Pin               Pin              Pin			Pin 		Pin
-            ESP8266          LCD I2C         MFRC522 board     	Buzzer		  led red	 led verde
+   Signal     Pin              Pin               Pin              Pin			Pin 		 Pin
+            ESP8266          LCD I2C         MFRC522 board     	Buzzer	 led red	led verde
    -------------------------------------------------------------------------------------------------
    RST	      D4(GPIO02)                         RST
    SPI SS     D8(GPIO15)                         SDA
@@ -10,9 +10,9 @@
    SPI SCK    D5(GPIO14)                         SCK   
    SDA        D2(GPIO04)      SDA
    SCL        D1(GPIO05)      SCL
-   SD3        SD3(GPIO10)      									 SD3       
-   D3         D3(GPIO0)      									 				 D3       
-   D0         D0(GPIO16)			      									 				 D0
+   SD3        SD3(GPIO10)      									                  SD3       
+   D3         D3(GPIO0)      									 				                    D3       
+   D0         D0(GPIO16)			      									 				                    D0
    5V         VIN             VIN                                
    3.3V       3V3                                3.3V
    GND        GND             GND                GND             GND			GND			GND
