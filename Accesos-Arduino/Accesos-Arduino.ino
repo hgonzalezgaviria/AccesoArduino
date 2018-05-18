@@ -36,9 +36,9 @@ const char* password = "nta9hdde";
 
 //Tiempo
 int timezone = 7;
-char ntp_server1[20] = "3.th.pool.ntp.org";
-char ntp_server2[20] = "1.asia.pool.ntp.org";
-char ntp_server3[20] = "0.asia.pool.ntp.org";
+char ntp_server1[30] = "3.south-america.pool.ntp.org";
+char ntp_server2[30] = "1.south-america.pool.ntp.org";
+char ntp_server3[30] = "0.south-america.pool.ntp.org";
 int dst = 0;
 bool displayTime = 0;
 
@@ -154,10 +154,10 @@ void ConectarWiFi() {
     Serial.println("Connecting...");
     digitalWrite(ledGreenPin, HIGH);
     digitalWrite(ledRedPin, HIGH);
-    delay(250);
+    delay(300);
     digitalWrite(ledGreenPin, LOW);
     digitalWrite(ledRedPin, LOW);
-    delay(250);
+    delay(300);
   }
      
   Serial.print("Conexión exitosa - IP: ");
@@ -202,7 +202,7 @@ void readRFID() {
   
 
         digitalWrite(ledGreenPin, HIGH);
-    delay(1200);
+    delay(1500);
     digitalWrite(ledGreenPin, LOW);
 
       analogWrite(buzzerPin,20);
@@ -221,7 +221,7 @@ void readRFID() {
   
 
         digitalWrite(ledGreenPin, HIGH);
-    delay(1200);
+    delay(1500);
     digitalWrite(ledGreenPin, LOW);
 
       analogWrite(buzzerPin,20);
@@ -237,13 +237,27 @@ void readRFID() {
   } else if ( (resultado == 0)) {
     Serial.println("Acceso denegado");
     digitalWrite(ledRedPin, HIGH);
-    delay(1200);
+    delay(1500);
     digitalWrite(ledRedPin, LOW);
          analogWrite(buzzerPin,30);
-    delay(1000);
+    delay(1200);
     analogWrite(buzzerPin,0);
 
     lcd.setCursor(0, 0), lcd.print(" Card not Found"), lcd.setCursor(0, 1), lcd.print("                "), lcd.setCursor(0, 1), lcd.print("ID "); 
+    lcd.print(content.substring(1));
+    delay(2000);
+    DisplayWAiT_CARD();
+ 
+  }  else if ( (resultado == 3)) {
+    Serial.println("Acceso denegado");
+    digitalWrite(ledRedPin, HIGH);
+    delay(1500);
+    digitalWrite(ledRedPin, LOW);
+         analogWrite(buzzerPin,30);
+    delay(1200);
+    analogWrite(buzzerPin,0);
+
+    lcd.setCursor(0, 0), lcd.print(" Acceso denegado"), lcd.setCursor(0, 1), lcd.print("                "), lcd.setCursor(0, 1), lcd.print("ID "); 
     lcd.print(content.substring(1));
     delay(2000);
     DisplayWAiT_CARD();
