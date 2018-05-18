@@ -55,13 +55,16 @@ int buzzerPin = 10; // (SD3) GPIO10
 LiquidCrystal_I2C lcd(0x3F, 16, 2);  //Se inicializa objeto lcd
 MFRC522 mfrc522(SS_PINESP, RST_PINESP);   // Crea instacia de MFRC522.
 
+
 // Metodo de configuración
 void setup() {
     Serial.println("Abrir Leds");
   pinMode(ledRedPin,OUTPUT);
   pinMode(ledGreenPin,OUTPUT);
   pinMode(buzzerPin,OUTPUT);
-   Serial.begin(115200);// Inicializa la comunicación serial del puerto local.
+  Serial.begin(9600);// Inicializa la comunicación serial del puerto local.
+  SPI.begin();      // Inicia el bus SPI.
+  mfrc522.PCD_Init();   // Inicializa MFRC522
 
   lcd.begin();
   lcd.backlight();
@@ -69,11 +72,7 @@ void setup() {
   lcd.print("................");
   
   Serial.println();  
-  SPI.begin();      // Inicia el bus SPI.
-  mfrc522.PCD_Init();   // Inicializa MFRC522
-  // Se estabalecen los pines S2 y S3 como salida
-  //pinMode(ledGreenPin, OUTPUT); 
-  //pinMode(ledRedPin, OUTPUT);
+
   // Se realiza la conexión a la red WiFi
   Serial.println("Llamada al metodo de wifi");
   ConectarWiFi();
@@ -192,7 +191,7 @@ void readRFID() {
   Serial.println(content.substring(1));
   
   
-  String urlServicio = "http://192.168.8.100:8081/Acceso/public/verificarAcceso?tagid=" + content.substring(1);
+  String urlServicio = "http://192.168.8.100/AccesoRIF/public/verificarAcceso?tagid=" + content.substring(1);
   // Se hace la petición al servidor y se le envían todos los parámetros
   int resultado = requestServer(urlServicio);
   
